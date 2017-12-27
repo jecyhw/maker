@@ -1,0 +1,26 @@
+
+//有区域添加成功就添加显示列表中
+    <% if @operate_type == OPERATE_TYPE[:add] %>//添加
+    <% if @canteen %>
+var tbody = $("tbody");
+tbody.find('tr.success').removeClass('success');
+    tbody.prepend('<%= escape_javascript(render_template_tr_show('admin/canteen/tr.html.erb', {canteen: @canteen, tr_style: 'success'})) %>')
+    <%
+    end
+    else
+    if flush_length == 0
+    %>
+    $("tbody").find('tr.success').removeClass('success');
+    $('#' + '<%= "#{@canteen.id}"%>').parents('tr').replaceWith('<%= escape_javascript(render_template_tr_show('admin/canteen/tr.html.erb', {canteen: @canteen, tr_style: 'success'})) %>');
+    <%
+    end
+    end
+    %>
+
+// 接下来查看是否有错误提示
+    <% if flush_length > 0
+    %>
+    page_notice('<%= escape_javascript(render partial: 'template/bs_alert.html.erb')%>');
+    <% else %>
+    $(".modal").modal('hide');
+    <% end %>

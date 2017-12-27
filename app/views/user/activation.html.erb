@@ -1,0 +1,56 @@
+<% provide(:title, '账号激活') %>
+<div class="container">
+  <div class="jumbotron" style="padding-top: 0px">
+    <div class="container">
+      <h2 class="text-center"><%= WEB_NAME %>欢迎新用户激活</h2>
+      <hr/>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <%= form_for(@student, url: maker_user_register_path, remote: true, method: :post) do |f|%>
+              <%= hidden_field_tag(:activate, 'activate') %>
+              <%= hidden_field_tag(:email, @student.email) %>
+              <div class="form-group">
+                <div class="alert alert-success" role="alert">
+                  登陆账号: <strong><%= @student.email %></strong>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= label_tag(:password, '密码') %>
+                <%= password_field_tag(:password, '', class: 'form-control', autocomplete: 'off') %>
+              </div>
+              <div class="form-group">
+                <%= label_tag(:confirm_password, '确认密码') %>
+                <%= password_field_tag(:confirm_password, '', class: 'form-control') %>
+              </div>
+              <!-- //用于阻止 chrome表单自动填充的占位符 -->
+              <input class='hidden' type="text" />
+              <input class='hidden' type="password"/>
+              <!-- //用于阻止 chrome表单自动填充的占位符 -->
+              <div class="form-group">
+                <div class="checkbox text-danger">
+                  <label>
+                    <%= check_box_tag(:goto, :goto, true) %>
+                    勾选表示激活后自动登陆跳转至完善个人信息,否则自动登陆跳转至首页
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block" id="send-email">确定</button>
+              </div>
+              <div class="form-group">
+
+              </div>
+              <div class="form-group">
+                <div class="text-danger">
+                  <strong>注意:</strong>
+                  <div>密码长度必须6到16位,而且必须是数字和字母组合</div>
+                  <div>激活成功后页面将失效</div>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

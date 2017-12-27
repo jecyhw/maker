@@ -1,0 +1,18 @@
+<table class="table table-bordered table-condensed table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th>所在区域</th>
+    <th>所在食堂</th>
+    <th>楼层</th>
+    <th>窗口名</th>
+    <th>操作</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <%  @canteen_windows.each do |canteen_window| %>
+      <%= render_template_tr_show('admin/canteen_window/tr.html.erb', {canteen_window: canteen_window}) %>
+  <% end %>
+  </tbody>
+</table>

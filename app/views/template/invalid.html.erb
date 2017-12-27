@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= WEB_NAME %>-无效链接</title>
+  <%= stylesheet_link_tag 'custom', media: 'all' %>
+  <style>
+      body {
+          padding-top: 0px;
+      }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>对不起,你请求的页面太美,导致失效</h1>
+      <p></p>
+      <p class="text-center"> <%= link_to "#{WEB_NAME}首页", '/', class: 'btn btn-primary btn-lg' %></p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

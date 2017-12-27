@@ -1,0 +1,5 @@
+<% if @modify_name %>
+$("#user_name").html('<%= @modify_name %>')
+<% end %>
+
+page_notice('<%= escape_javascript(render :partial => 'template/bs_alert.html.erb')%>');

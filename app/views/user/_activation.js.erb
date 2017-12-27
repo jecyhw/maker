@@ -1,0 +1,9 @@
+<% if flush_length == 0 %>
+<% if params[:goto]#跳转至完善个人信息 %>
+window.location.href = '<%= maker_user_student_path %>'
+<% else %>
+window.location.href = '<%= maker_path %>'
+<% end %>
+<%else %>
+page_notice('<%= escape_javascript(render :partial => 'template/bs_alert.html.erb')%>');
+<% end%>

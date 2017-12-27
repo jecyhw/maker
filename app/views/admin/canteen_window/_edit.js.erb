@@ -1,0 +1,20 @@
+//有区域添加成功就添加显示列表中
+<% if @operate_type == OPERATE_TYPE[:add] %>//添加
+<% if @canteen_windows %>
+var tbody = $("tbody");
+tbody.find('tr.success').removeClass('success');
+<% @canteen_windows.each do |canteen_window| %>
+tbody.prepend('<%= escape_javascript(render_template_tr_show('admin/canteen_window/tr.html.erb', {canteen_window: canteen_window, tr_style: 'success'})) %>')
+<% end
+end
+else
+if flush_length == 0
+%>
+$("tbody").find('tr.success').removeClass('success');
+$('#' + '<%= "#{@canteen_window.id}"%>').parents('tr').replaceWith('<%= escape_javascript(render_template_tr_show('admin/canteen_window/tr.html.erb',  {canteen_window: @canteen_window, tr_style: 'success'})) %>');
+<%
+end
+end
+%>
+
+

@@ -1,0 +1,28 @@
+
+<%= form_for(@student, url: maker_user_register_path, remote: true, method: :post) do |f|%>
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>注意:</strong>注册发送链接后将在一小时后失效
+      </div>
+    <div class="form-group">
+      <%= f.label(:email, '国科大邮箱') %>
+      <%= f.text_field(:email, class: 'form-control', placeholder: '请输入国科大邮箱') %>
+    </div>
+    <div class="form-group">
+      <div class="checkbox text-danger">
+        <label>
+          <%= check_box_tag(:goto, :goto, true) %>
+          邮件发送成功自动跳转到国科大邮箱主页
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block" id="send-email">发送邮件注册</button>
+    </div>
+    <div class="form-group">
+
+    </div>
+    <div class="form-group">
+      <div class="text-info">提示:只能使用国科大邮箱注册</div>
+    </div>
+<% end %>

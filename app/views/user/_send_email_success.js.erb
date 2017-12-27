@@ -1,0 +1,10 @@
+<% if params[:goto].blank? %>
+var send_email = $("#send-email");
+send_email.parent().next().hide().fadeIn('slow', function () {
+    $(this).html('<%= link_to '邮件已经发送成功,请点击去激活', UCAS_MAIL_ADDRESS, class: 'btn btn-success btn-block' %>')
+    send_email.html('重新发送');
+});
+
+<% else%>
+window.location.href = '<%= UCAS_MAIL_ADDRESS %>';
+<%end %>

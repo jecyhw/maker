@@ -1,0 +1,34 @@
+<div>
+  <%= form_for(@canteen_worker, url: maker_user_admin_path, method: :post, html: {target: 'form-iframe'}) do |f| %>
+      <%= hidden_field_tag(:method, @method) %>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <img class="img-rounded img-responsive" <%= "src=#{@canteen_worker.photo.url(:medium)}" %>
+          <p></p>
+          <label class="text-info"><%= @canteen_worker.photo_file_name.blank? ? '暂无头像' : '原头像' %></label>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <div class="text-danger">
+            <strong>图片格式支持jpg,png,大小不超过5M</strong>
+          </div>
+        </div>
+        <div class="form-group">
+          <button id='photo-choose' type="button" class="btn btn-default btn-block" data-target="#canteen_worker_photo">选择头像</button>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">保存头像</button>
+        </div>
+
+        <div class="form-group">
+          <%= f.file_field(:photo, class: 'hide', accept: 'image/png, image/jpeg', 'data-target' => '#img-preview', onchange: 'preview_img(this)') %>
+        </div>
+
+        <div class="form-group">
+          <img class="img-rounded img-responsive" id="img-preview">
+        </div>
+      </div>
+  <% end %>
+  <iframe name="form-iframe" id="form-iframe"></iframe>
+</div>

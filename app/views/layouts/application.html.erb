@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag 'application', media: 'all',
+                          'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
+  </script>
+
+  <![endif]-->
+  <%= javascript_include_tag 'common' %>
+
+</head>
+<body>
+
+<div class="main">
+<header class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <%= link_to WEB_NAME, maker_index_url, class: 'navbar-brand' %>
+    </div>
+
+    <!--<ul class="nav navbar-nav">-->
+      <!--<li class="active"><a href="#">首页</a></li>-->
+      <!--<li class=""><a href="#">一食堂</a></li>-->
+      <!--<li class=""><a href="#">二食堂</a></li>-->
+      <!--<li class=""><a href="#">三食堂</a></li>-->
+    <!--</ul>-->
+
+
+    <div class="navbar-form navbar-left">
+
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <% if is_logged? %>
+
+        <!--<li><a href="javascript:void(0)" class="navbar-link" id="maker_user_login" data-loaded="false" data-path="">登陆</a></li>-->
+            <li><%= link_to get_user_name || get_user_account, eval('maker_user_' + get_user_type + '_path'), id: 'user_name', class: 'navbar-link' %></li>
+            <li><%= link_to '注销', maker_user_logout_path, class: 'navbar-link', id: 'maker_user_logout' %></li>
+            <% else %>
+            <li><%= link_to '登陆', maker_user_login_path, :remote => true, id: 'maker_user_login', class: 'navbar-link' %></li>
+            <li><%= link_to '注册', maker_user_register_path, :remote => true, id: 'maker_user_register', class: 'navbar-link' %></li>
+            <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+
+  </div><!-- /.container-fluid -->
+</header>
+
+
+<!--<form class="form-inline" role="search">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search" name="q">
+    <div class="input-group-btn">
+      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+    </div>
+  </div>
+  <a class="navbar-link" href="#">高级搜索</a>
+</form>-->
+
+<div class="container">
+
+  <%= yield %>
+</div>
+</div>
+
+<div id="notice">
+</div>
+</body>
+</html>

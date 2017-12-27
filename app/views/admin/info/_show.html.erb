@@ -1,0 +1,90 @@
+<p></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="col-sm-4">
+      <%= form_for(@canteen_worker, url: maker_user_admin_path, method: :post,  html: {target: 'form-iframe'}) do |f| %>
+          <div class="form-group  col-sm-12">
+            <img class="img-rounded img-responsive" <%= "src=#{@canteen_worker.photo.url(:medium)}" %> id="img-preview">
+          </div>
+          <div class="col-sm-12">
+            <hr/>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group">
+              <button id='photo-choose' type="button" class="btn btn-default btn-block" data-target="#canteen_worker_photo">选择头像</button>
+              <%= f.file_field(:photo, class: 'hide', accept: 'image/png, image/jpeg', 'data-target' => '#img-preview', onchange: 'preview_img(this)') %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">更新</button>
+            </div>
+          </div>
+
+          <%= hidden_field_tag(:method, @method) %>
+          <%= hidden_field_tag(:edit, 'photo') %>
+          <%= hidden_field_tag(:id, @canteen_worker.id)%>
+      <% end %>
+    </div>
+    <div class="col-sm-8">
+
+
+      <%= form_for(@canteen_worker, url: maker_user_admin_path, method: :post,  html: {target: 'form-iframe'}) do |f| %>
+          <%= hidden_field_tag(:method, @method) %>
+          <%= hidden_field_tag(:edit, 'info') %>
+          <%= hidden_field_tag(:id, @canteen_worker.id)%>
+          <div class="form-group">
+            <%= f.label :account, '登陆账号'%>
+            <%= f.text_field(:account, class: 'form-control') %>
+          </div>
+          <hr/>
+          <div class="form-group">
+            <%= f.label :name, '姓名'%>
+            <%= f.text_field(:name, class: 'form-control') %>
+          </div>
+          <hr/>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-4">
+                <button class="btn btn-danger  btn-block" type="button" data-toggle="collapse" data-target="#password-change" aria-expanded="false" aria-controls="password-change">
+                  修改密码
+                </button>
+              </div>
+              <div class="col-sm-4"></div>
+              <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary btn-block">更新</button>
+              </div>
+            </div>
+            <p></p>
+            <div class="collapse" id="password-change">
+              <div class="well">
+                <div class="form-group">
+                  <%= label_tag :old_password, '旧密码'%>
+                  <%= password_field_tag(:old_password, '', class: 'form-control', autocomplete: 'off') %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :new_password, '新密码'%>
+                  <%= password_field_tag(:new_password, '', class: 'form-control') %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :confirm_password, '确定密码'%>
+                  <%= password_field_tag(:confirm_password,  '', class: 'form-control') %>
+                </div>
+                <!-- //用于阻止 chrome表单自动填充的占位符 -->
+                <input class='hidden' type="text" />
+                <input class='hidden' type="password"/>
+                <!-- //用于阻止 chrome表单自动填充的占位符 -->
+                <div class="form-group">
+                  <div class="text-danger">
+                    <strong>注意:密码长度必须6到16位,而且必须是数字和字母组合</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <iframe name="form-iframe" id="form-iframe"></iframe>
+    </div>
+  </div>
+</div>

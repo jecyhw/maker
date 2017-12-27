@@ -1,0 +1,38 @@
+<% provide(:title, '用户') %>
+<%= stylesheet_link_tag 'admin', media: 'all' %>
+<%= stylesheet_link_tag 'student', media: 'all' %>
+<div class="row ">
+  <div class="col-md-2 left-nav">
+    <div class="panel panel-default">
+      <div class="panel-heading">个人资料</div>
+      <div class="list-group">
+
+        <a href="<%= maker_user_student_path %>" class="list-group-item list-group-item-click" data-method="modify_basic_info">
+          基本资料
+        </a>
+        <a href="<%= maker_user_student_path %>" class="list-group-item" data-method="modify_photo" data-op="false">
+          头像设置
+        </a>
+        <a href="<%= maker_user_student_path %>" class="list-group-item" data-method="modify_password" data-op="false">
+          修改密码
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-10 right-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <ol class="breadcrumb">
+          <li><span>推荐菜管理</span></li>
+        </ol>
+      </div>
+    </div>
+    <hr class="admin-hr"/>
+    <div id="content-container">
+        
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag('student')%>

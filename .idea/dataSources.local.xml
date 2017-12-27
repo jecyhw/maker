@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails maker: development" uuid="817a394c-d4a6-471f-b2b8-147593008183">
+      <user-name>postgres</user-name>
+      <user-password>df9bdf98df99df9cdf9fdf9e</user-password>
+    </data-source>
+    <data-source name="Rails maker: test" uuid="8f136407-5116-499e-80e1-16074d0c350c">
+      <user-name>postgres</user-name>
+      <user-password>df9bdf98df99df9cdf9fdf9e</user-password>
+    </data-source>
+    <data-source name="Rails maker: production" uuid="b64fb22b-fc08-4cca-8921-4ed643c90d99">
+      <user-name>postgres</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfe7dfebdfe1dfefdff8dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+    </data-source>
+  </component>
+</project>

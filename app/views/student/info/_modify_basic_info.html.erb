@@ -1,0 +1,18 @@
+<div class="col-sm-6">
+  <%= form_for(@student, url: maker_user_student_path, method: :post, remote: true) do |f| %>
+      <%= hidden_field_tag(:method, @method) %>
+      <div class="form-group">
+        <%= f.label :name, '姓名'%>
+        <%= f.text_field(:name, class: 'form-control') %>
+      </div>
+      <hr/>
+      <div class="form-group">
+        <%= f.label :gender, '性别'%>
+        <%= f.select(:gender, options_for_select(GENDER, (@student.gender ? @student.gender : nil)), {:prompt => '请选择性别'}, { class: 'form-control'} ) %>
+      </div>
+      <hr/>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">更新</button>
+      </div>
+  <% end %>
+</div>

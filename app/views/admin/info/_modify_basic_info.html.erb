@@ -1,0 +1,22 @@
+<div class="col-sm-6">
+  <%= form_for(@canteen_worker, url: maker_user_admin_path, method: :post, remote: true) do |f| %>
+      <%= hidden_field_tag(:method, @method) %>
+      <div class="form-group">
+        <%= f.label :account, '姓名'%>
+        <%= f.text_field(:account, class: 'form-control') %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, '姓名'%>
+        <%= f.text_field(:name, class: 'form-control') %>
+      </div>
+      <hr/>
+      <div class="form-group">
+        <%= f.label :gender, '性别'%>
+        <%= f.select(:gender, options_for_select(GENDER, @canteen_worker.gender), {}, { class: 'form-control'} ) %>
+      </div>
+      <hr/>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">更新</button>
+      </div>
+  <% end %>
+</div>

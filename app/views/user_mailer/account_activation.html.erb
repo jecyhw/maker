@@ -1,0 +1,8 @@
+<h1>账户激活</h1>
+
+<p>您好,<%= @student.email %>,</p>
+<p>欢迎来到<strong><%= WEB_NAME %></strong>! 请点击下面的链接来激活你的账号:</p>
+<a href="<%= url_for controller: 'user', action: 'register', activation_token: @student.activation_token, email: @student.email, only_path: false %>">
+  <%= url_for controller: 'user', action: 'register', activation_token: @student.activation_token, email: @student.email, only_path: false %></a>
+
+<p style="color: #B00100"><strong>注意:本链接将于一小时后失效</strong></p>

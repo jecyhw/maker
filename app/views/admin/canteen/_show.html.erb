@@ -1,0 +1,16 @@
+<table class="table table-bordered table-condensed table-hover">
+<thead>
+<tr>
+  <th></th>
+  <th>所在区域</th>
+  <th>食堂名</th>
+  <th>操作</th>
+</tr>
+</thead>
+<tbody>
+<% @canteens.each do |canteen| %>
+    <%= render_template_tr_show('admin/canteen/tr.html.erb', {canteen: canteen}) %>
+<% end%>
+
+</tbody>
+</table>

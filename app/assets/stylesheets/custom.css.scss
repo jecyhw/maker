@@ -1,0 +1,61 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.main {
+  padding-top: 50px;
+}
+
+iframe {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+
+.padding-left-fixed {
+  padding-left: 0px;
+}
+
+.padding-right-fixed {
+  padding-right: 0px;
+}
+
+.modal-dialog-460 {
+  width: 460px;
+}
+
+#notice {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10000;
+}
+
+.alert-primary {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}// #337ab7
+
+.alert-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.alert-info {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+
+.alert-warning {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+.alert-danger {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}

@@ -1,0 +1,27 @@
+<%= form_for(@canteen, url: maker_user_admin_path, method: :post, html: {class: 'row', target: 'form-iframe'}) do |f| %>
+  <div class="form-group col-sm-12">
+    <%= f.label :region_id, '所在区域'  %>
+    <%= collection_select(:canteen, :region_id, Region.all, :id, :name, {:prompt => '请选择食堂所在区域'}, { class: 'form-control'}) %>
+  </div>
+    <div class="form-group col-sm-12">
+      <%= f.label :name, '食堂名字'%>
+      <%= f.text_field(:name, class: 'form-control') %>
+    </div>
+    <div class="form-group col-sm-12">
+      <button id='photo-choose' type="button" class="btn btn-default btn-block" data-target="#canteen_photo">选择食堂图片</button>
+      <%= f.file_field(:photo, class: 'hide', accept: 'image/png, image/jpeg', 'data-target' => '#img-preview', onchange: 'preview_img(this)') %>
+    </div>
+    <div class="form-group  col-sm-12">
+      <img class="img-rounded img-responsive" <%= "src=#{@canteen.photo.url(:medium)}" if @canteen.id %> id="img-preview">
+    </div>
+  <%= hidden_field_tag(:method, @method) %>
+  <%= hidden_field_tag(:id, @canteen.id) if @operate_type == OPERATE_TYPE[:edit] %>
+  <!--<div class="form-group col-sm-6">-->
+  <!--<button type="submit" class="btn-lg btn-primary btn-block">注册</button>-->
+  <!--</div>-->
+
+  <div class="form-group col-sm-12">
+    <button type="submit" class="btn btn-primary btn-block">确定</button>
+  </div>
+    <iframe name="form-iframe" id="form-iframe"></iframe>
+<% end %>

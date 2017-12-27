@@ -1,0 +1,109 @@
+<%= form_for(@canteen_worker, url: maker_user_admin_path, remote: true, method: :post) do |f| %>
+    <div class="form-group">
+       <% if @operate_type == OPERATE_TYPE[:add] %>
+          <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          员工密码默认密码:<strong>1q2w3e</strong></div>
+          <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :account, '员工号' %>
+      <%= f.text_field(:account, class: 'form-control') %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :name, '姓名' %>
+      <%= f.text_field(:name, class: 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= f.label :gender, '性别'%>
+      <%= f.select(:gender, options_for_select(GENDER, GENDER[@canteen_worker.gender ? @canteen_worker.gender : 0]), {}, { class: 'form-control'} ) %>
+    </div>
+    <div class="form-group">
+      <div class="collapse" id="granted">
+        <div class="well">
+          <div class="row">
+            <% if Region.count > 0 %>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= label_tag :region, '区域',
+                              {
+                                      :'data-dynamic-select' => true,
+                                      :'data-target' => :canteen,
+                                      :'data-method' => 'dynamic_select_between_region_and_canteen'
+                              } %>
+                <%= select_tag(:region,
+                               options_from_collection_for_select(Region.all, :id, :name, @region_id),
+                               :prompt => '请选择区域',
+                               class: 'form-control') %>
+              </div>
+              <div class="form-group">
+                <%= label_tag :stair_layer, '楼层',
+                              {
+                                      :'data-no-prompt' => '所选食堂暂未添加楼层',
+                                      :'data-prompt' => '请选择楼层',
+                                      :'data-target' => :canteen_window,
+                                      :'data-no-choose' => '请先选择食堂',
+                                      :'data-method' => 'dynamic_select_between_stair_layer_and_canteen_window'
+                              } %>
+                <%= select_tag(:stair_layer,
+                               @stair_layers ? options_from_collection_for_select(@stair_layers, :id, :layer, @stair_layer_id) : nil,
+                               :prompt => @stair_layers ? '请选择楼层' : '请先选择食堂',
+                               class: 'form-control' ) %>
+              </div>
+
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= label_tag :canteen, '食堂',
+                              {
+                                      :'data-no-prompt' => '所选区域暂未添加食堂',
+                                      :'data-prompt' => '请选择食堂',
+                                      :'data-target' => :stair_layer,
+                                      :'data-no-choose' => '请先选择区域',
+                                      :'data-method' => 'dynamic_select_between_canteen_and_stair_layer'
+                              } %>
+                <%= select_tag(:canteen,
+                               @canteens ? options_from_collection_for_select(@canteens, :id, :name, @canteen_id) : nil,
+                               :prompt => @canteens ? '请选择食堂' : '请先选择区域',
+                               class: 'form-control' ) %>
+              </div>
+              <div class="form-group">
+                <%= label_tag :canteen_window, '窗口',
+                              {
+                                      :'data-no-prompt' => '所选楼层暂未添加窗口',
+                                      :'data-prompt' => '请选择窗口',
+                                      :'data-no-choose' => '请先选择楼层'
+                              } %>
+                <%= select_tag :canteen_window,
+                               @canteen_windows ? options_from_collection_for_select(@canteen_windows, :id, :name, @canteen_window_id) : nil,
+                               :prompt => @canteen_windows ? '请选择窗口' : '请先选择楼层' ,
+                               class: 'form-control'  %>
+              </div>
+            </div>
+            <div class="text-danger col-sm-12">
+              <strong>注意:</strong>工作人员权限是用来管理食堂,权限的大小依次是区域=>食堂=>楼层=>窗口.
+            </div>
+            <% else %>
+                <div class="text-danger col-sm-12">
+                <strong>注意:未创建任何食堂结构,暂时无法赋权,请先创建</strong>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-6 padding-left-fixed">
+        <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#granted" aria-expanded="false" aria-controls="granted">
+          <%= @operate_type == OPERATE_TYPE[:edit] ? '修改员工权限' : '赋予员工权限' %>
+        </button>
+      </div>
+      <div class="col-sm-6 padding-right-fixed">
+        <button type="submit" class="btn btn-primary btn-block">确定</button>
+      </div>
+    </div>
+    <%= hidden_field_tag(:method, @method) %>
+    <%= hidden_field_tag(:id, @canteen_worker.id) if @operate_type == OPERATE_TYPE[:edit]%>
+<% end %>

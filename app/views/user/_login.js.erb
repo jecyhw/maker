@@ -1,0 +1,21 @@
+<% if request.request_method =~ /get/i %>
+    $("<%= escape_javascript(render :partial => 'user/login.html.erb', layout: 'layouts/edit_modal.html')%>")
+    .modal().find('.modal-dialog').addClass('modal-dialog-460');
+<% else %>
+    <% if flush_length > 0 %>
+            page_notice('<%= escape_javascript(render :partial => 'template/bs_alert.html.erb')%>');
+        <%
+       else
+        if @user_type == USER_TYPE[:student]
+            %>
+window.location.href = '<%= maker_user_student_path%>';
+<%
+        elsif @user_type == USER_TYPE[:admin]
+            %>
+        window.location.href = '<%= maker_user_admin_path%>';
+    <%
+        else
+        end
+       end
+    %>
+<% end %>

@@ -1,0 +1,16 @@
+<table class="table table-bordered table-condensed table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th>区域名称</th>
+    <th>操作</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @regions.each do |region| %>
+      <%= render_template_tr_show('admin/region/tr.html.erb',  {region: region}) %>
+  <% end %>
+
+  </tbody>
+</table>

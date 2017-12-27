@@ -1,0 +1,38 @@
+<%= form_for(@stair_layer, url: maker_user_admin_path, remote: true, method: :post, class: 'row') do |f| %>
+    <% if @stair_layer.id %>
+        <div class="form-group col-sm-12">
+          <%= label_tag :region_id, '所在区域', {:'data-dynamic-select' => true, :'data-target' => "#{:stair_layer}_#{:canteen_id}", :'data-method' => 'dynamic_select_between_region_and_canteen' } %>
+          <%= select_tag(:region_id,
+                         options_from_collection_for_select(
+                                 Region.all, :id, :name, @stair_layer.canteen.region.id),
+                         :prompt => '请选择区域',  class: 'form-control') %>
+        </div>
+        <div class="form-group col-sm-12">
+          <%= f.label :canteen_id, '所在食堂', {:'data-no-prompt' => '所选区域暂未添加食堂', :'data-prompt' => '请选择食堂', :'data-no-choose' => '请先选择区域' } %>
+          <%= f.select(:canteen_id,
+                       options_from_collection_for_select(
+                               @stair_layer.canteen.region.canteens, :id, :name, @stair_layer.canteen.id),
+                       { :prompt => '请先选择区域' }, { class: 'form-control' } ) %>
+        </div>
+    <% else %>
+        <div class="form-group col-sm-12">
+          <%= label_tag :region_id, '所在区域', {:'data-dynamic-select' => true, :'data-target' => "#{:stair_layer}_#{:canteen_id}", :'data-method' => 'dynamic_select_between_region_and_canteen' } %>
+          <%= select_tag(:region_id, options_from_collection_for_select(Region.all, :id, :name), :prompt => '请选择区域',  class: 'form-control') %>
+        </div>
+        <div class="form-group col-sm-12">
+          <%= f.label :canteen_id, '所在食堂', {:'data-no-prompt' => '所选区域暂未添加食堂', :'data-prompt' => '请选择食堂' } %>
+          <%= f.select(:canteen_id, {}, { :prompt => '请先选择区域' }, { class: 'form-control' }) %>
+        </div>
+    <% end %>
+    <div class="form-group col-sm-12">
+      <%= f.label :layer, '楼层号'%><%= '(多个楼层号使用|分隔,楼层号必须为数字)' if @operate_type == OPERATE_TYPE[:add] %>
+      <%= f.text_field(:layer, class: 'form-control') %>
+    </div>
+    <%= hidden_field_tag(:method, @method) %>
+    <%= hidden_field_tag(:id, @stair_layer.id) if @operate_type == OPERATE_TYPE[:edit] %>
+
+    <div class="form-group col-sm-12">
+      <button type="submit" class="btn btn-primary btn-block">确定</button>
+    </div>
+<% end %>
+

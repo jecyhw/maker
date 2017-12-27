@@ -1,0 +1,19 @@
+<table class="table table-bordered table-condensed table-hover">
+<thead>
+<tr>
+  <th></th>
+  <th>工号</th>
+  <th>姓名</th>
+  <th>性别</th>
+  <th>权限</th>
+  <th>操作</th>
+
+</tr>
+</thead>
+<tbody>
+<% @canteen_workers.each do |canteen_worker| %>
+  <%= render_template_tr_show('admin/canteen_worker/tr.html.erb', {canteen_worker: canteen_worker})%>
+<%end%>
+
+</tbody>
+</table>

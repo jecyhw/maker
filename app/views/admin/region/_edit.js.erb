@@ -1,0 +1,19 @@
+//有区域添加成功就添加显示列表中
+<% if @operate_type == OPERATE_TYPE[:add] %>//添加
+<% if @regions %>
+var tbody = $("tbody");
+tbody.find('tr.success').removeClass('success');
+<% @regions.each do |region| %>
+tbody.prepend('<%= escape_javascript(render_template_tr_show('admin/region/tr.html.erb', {region: region, tr_style: 'success'})) %>')
+<% end
+end
+else
+if flush_length == 0
+%>
+$("tbody").find('tr.success').removeClass('success');
+$('#' + '<%= "#{@region.id}"%>').parents('tr').replaceWith('<%= escape_javascript(render_template_tr_show('admin/region/tr.html.erb', {region: @region, tr_style: 'success'})) %>');
+<%
+end
+end
+%>
+

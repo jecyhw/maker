@@ -1,0 +1,8 @@
+<%= yield %>
+// 接下来查看是否有错误提示
+<% if flush_length > 0
+%>
+page_notice('<%= escape_javascript(render partial: 'template/bs_alert.html.erb')%>');
+<% else %>
+$(".modal").modal('hide');
+<% end %>

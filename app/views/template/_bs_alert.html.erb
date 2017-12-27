@@ -1,0 +1,11 @@
+<%
+   flash.each do |msg_type, msgs|
+   puts(msgs)
+%>
+    <% msgs.each do |msg|%>
+        <div class="alert alert-<%= msg_type%> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %> <strong><%= msg %></strong>
+        </div>
+    <% end %>
+<% end %>

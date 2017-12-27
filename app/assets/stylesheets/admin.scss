@@ -1,0 +1,48 @@
+.left-nav {
+  padding-top: 50px;
+}
+
+.right-content {
+  padding-top: 10px;
+  min-height: 520px!important;
+}
+
+@media screen and (min-width: 980px) { /*当屏幕尺寸大于980px时，应用下面的CSS样式*/
+  .right-content {
+    border-left: solid 1px #DDD;
+  }
+}
+
+.admin-hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px;
+}
+
+.right {
+  float: right;
+}
+
+.padding-fixed {
+  padding: 0px !important;
+}
+
+.left-nav .list-group > .list-group-item:hover,
+.left-nav .list-group > .list-group-item-click {
+  background-color: rgb(231, 231, 231);
+  color: #444444;
+  cursor: pointer;
+}
+
+ol {
+  margin: 0px !important;
+}
+
+ol span {
+  color: #337AB7;
+}
+//ol span:hover {
+//  cursor: pointer;
+//  color: #2E6DA4;
+//}
+

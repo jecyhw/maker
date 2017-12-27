@@ -1,0 +1,18 @@
+//有区域添加成功就添加显示列表中
+<% if @operate_type == OPERATE_TYPE[:add] %>//添加
+<% if @stair_layers %>
+var tbody = $("tbody");
+tbody.find('tr.success').removeClass('success');
+<% @stair_layers.each do |stair_layer| %>
+tbody.prepend('<%= escape_javascript(render_template_tr_show('admin/stair_layer/tr.html.erb', {stair_layer: stair_layer, tr_style: 'success'})) %>')
+<% end
+end
+else
+if flush_length == 0
+%>
+$("tbody").find('tr.success').removeClass('success');
+$('#' + '<%= "#{@stair_layer.id}"%>').parents('tr').replaceWith('<%= escape_javascript(render_template_tr_show('admin/stair_layer/tr.html.erb', {stair_layer: @stair_layer, tr_style: 'success'})) %>');
+<%
+end
+end
+%>
